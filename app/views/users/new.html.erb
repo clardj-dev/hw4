@@ -1,17 +1,29 @@
 <h1>New User Account</h1>
 
 <form action="/users" method="post">
+  <%# Rails’ built‐in helper to insert a hidden CSRF token %>
+  <%= csrf_meta_tags %> 
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
   <p>
-    <label for="username">Username</label>
-    <input type="text" name="username" id="username">
+    <label for="user_username">Username</label>
+    <input type="text" name="user[username]" id="user_username">
   </p>
+
   <p>
-    <label for="email">Email</label>
-    <input type="text" name="email" id="email">
+    <label for="user_email">Email</label>
+    <input type="email" name="user[email]" id="user_email">
   </p>
+
   <p>
-    <label for="password">Password</label>
-    <input type="text" name="password" id="password">
+    <label for="user_password">Password</label>
+    <input type="password" name="user[password]" id="user_password">
   </p>
-  <button>Signup</button>
+
+  <p>
+    <label for="user_password_confirmation">Password Confirmation</label>
+    <input type="password" name="user[password_confirmation]" id="user_password_confirmation">
+  </p>
+
+  <button type="submit">Sign Up</button>
 </form>
