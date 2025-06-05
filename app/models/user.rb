@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
 
-  # A User "has many" Places. Deleting a user destroys their places.
+  # A User "has many" Places; deleting a User destroys its Places.
   has_many("places", "dependent" => :destroy)
 
   validates("username", "presence" => true)
