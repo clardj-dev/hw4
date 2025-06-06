@@ -1,27 +1,24 @@
 <div class="d-flex justify-content-between align-items-center mb-3">
-  <h2><%= @place["name"] %></h2>
-  <%= link_to "New Entry", "/places/#{@place["id"]}/entries/new", { "class" => "btn btn-secondary" } %>
+  <h2><%= @place.name %></h2>
+  <%= link_to "New Entry", new_place_entry_path(@place), class: "btn btn-secondary" %>
 </div>
 
-<p><strong>Location:</strong> <%= @place["location"] %></p>
-<p><%= @place["description"] %></p>
+<p><strong>Location:</strong> <%= @place.location %></p>
+<p><%= @place.description %></p>
 
 <h3 class="mt-4">My Entries</h3>
 <div class="row">
   <% @entries.each do |entry| %>
     <div class="col-lg-4 col-md-6 mb-3">
       <div class="card h-100">
-        <% if entry.image.attached? %>
-          <%= image_tag(
-                entry.image.variant({ "resize_to_limit" => [400, 200] }),
-                { "class" => "card-img-top" }
-              ) %>
+        <% if entry.uploaded_image.attached? %>
+          <%= image_tag url_for(entry.uploaded_image), class: "card-img-top" %>
         <% end %>
         <div class="card-body">
-          <h5 class="card-title"><%= entry["title"] %></h5>
-          <p class="card-text"><%= truncate(entry["description"], { "length" => 100 }) %></p>
+          <h5 class="card-title"><%= entry.title %></h5>
+          <p class="card-text"><%= truncate(entry.description, length: 100) %></p>
           <p class="text-muted">
-            <small><%= entry["occurred_on"].strftime("%b %d, %Y") %></small>
+            <small><%= entry.occurred_on.strftime("%b %d, %Y") %></small>
           </p>
         </div>
       </div>

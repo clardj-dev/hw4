@@ -64,6 +64,9 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  # Use the local disk for Active Storage in production (for hw4 demo/deploy)
+  config.active_storage.service = :local
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
