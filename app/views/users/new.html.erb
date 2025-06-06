@@ -1,29 +1,56 @@
 <h1>New User Account</h1>
 
 <form action="/users" method="post">
-  <%# Rails’ built‐in helper to insert a hidden CSRF token %>
-  <%= csrf_meta_tags %> 
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <!-- CSRF token for Rails -->
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>"
+  >
 
-  <p>
-    <label for="user_username">Username</label>
-    <input type="text" name="user[username]" id="user_username">
-  </p>
+  <div class="mb-3">
+    <label for="user_username" class="form-label">Username</label>
+    <input
+      type="text"
+      name="user[username]"
+      id="user_username"
+      class="form-control"
+      required
+    >
+  </div>
 
-  <p>
-    <label for="user_email">Email</label>
-    <input type="email" name="user[email]" id="user_email">
-  </p>
+  <div class="mb-3">
+    <label for="user_email" class="form-label">Email</label>
+    <input
+      type="email"
+      name="user[email]"
+      id="user_email"
+      class="form-control"
+      required
+    >
+  </div>
 
-  <p>
-    <label for="user_password">Password</label>
-    <input type="password" name="user[password]" id="user_password">
-  </p>
+  <div class="mb-3">
+    <label for="user_password" class="form-label">Password</label>
+    <input
+      type="password"
+      name="user[password]"
+      id="user_password"
+      class="form-control"
+      required
+    >
+  </div>
 
-  <p>
-    <label for="user_password_confirmation">Password Confirmation</label>
-    <input type="password" name="user[password_confirmation]" id="user_password_confirmation">
-  </p>
+  <div class="mb-3">
+    <label for="user_password_confirmation" class="form-label">Password Confirmation</label>
+    <input
+      type="password"
+      name="user[password_confirmation]"
+      id="user_password_confirmation"
+      class="form-control"
+      required
+    >
+  </div>
 
-  <button type="submit">Sign Up</button>
+  <button type="submit" class="btn btn-primary">Sign Up</button>
 </form>
