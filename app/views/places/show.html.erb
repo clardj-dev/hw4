@@ -19,7 +19,7 @@
         <% end %>
         <div class="card-body">
           <h5 class="card-title"><%= entry["title"] %></h5>
-          <p class="card-text"><%= truncate(entry["long_desc"], { "length" => 100 }) %></p>
+          <p class="card-text"><%= truncate(entry["description"], { "length" => 100 }) %></p>
           <p class="text-muted">
             <small><%= entry["occurred_on"].strftime("%b %d, %Y") %></small>
           </p>

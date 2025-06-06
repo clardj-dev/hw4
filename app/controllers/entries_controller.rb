@@ -9,7 +9,7 @@ before_action :set_place
   def create
     @entry = @place.entries.new
     @entry["title"]       = params["entry"]["title"]
-    @entry["long_desc"]   = params["entry"]["long_desc"]
+    @entry["description"]   = params["entry"]["description"]
     @entry["occurred_on"] = params["entry"]["occurred_on"]
     @entry["image"]       = params["entry"]["image"]
 
