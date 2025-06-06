@@ -1,25 +1,75 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Tacostagram Final</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Hw4</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <link rel="stylesheet" href="/stylesheets/application.css">
+    <!-- Bootstrap CSS v5.3 (CDN) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-..."
+      crossorigin="anonymous"
+    />
+    <%= stylesheet_link_tag "application", "data-turbo-track" => "reload" %>
   </head>
 
   <body>
-    <div>
-      <%= flash["notice"] %>
-    </div>
-    <div>
-      <a href="/">Home</a>
-      <a href="/logout">Logout</a>
-      <a href="/login">Login</a>
-      <a href="/users/new">Signup</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <%= link_to "Travel Journal", "/places", { "class" => "navbar-brand" } %>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <% if logged_in? %>
+              <li class="nav-item">
+                <span class="navbar-text me-3">
+                  Signed in as <strong><%= current_user["username"] %></strong>
+                </span>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Logout", "/logout", { "method" => :delete, "class" => "nav-link" } %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Login", "/login", { "class" => "nav-link" } %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Signup", "/signup", { "class" => "nav-link" } %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-4">
+      <% if flash["notice"] %>
+        <div class="alert alert-success"><%= flash["notice"] %></div>
+      <% end %>
+
+      <%= yield %>
     </div>
 
-    <%= yield %>
+    <!-- Bootstrap JS Bundle (with Popper) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-..."
+      crossorigin="anonymous"
+    ></script>
+    <%= javascript_include_tag "application", "data-turbo-track" => "reload", "defer" => true %>
   </body>
 </html>
+
